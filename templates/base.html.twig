@@ -17,9 +17,12 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+<div class="container-fluid d-flex justify-content-center pb-3 pt-3 bg-body-tertiary">
+    <img src="{{ asset('images/LSOC_Volley_title.png') }}" width="27%" height="27%" alt="Titre LSOC Volley">
+</div>
+<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="{{ asset('images/logo.png') }}" width="20%" height="20%" alt="Logo LSOC"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,16 +32,60 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href={{ path('app_home') }}>Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={{ path('app_home') }}>Le club</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Le club
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Un mot du président</a></li>
+                        <li><a class="dropdown-item" href="#">Historique</a></li>
+                        <li><a class="dropdown-item disabled" href="#">Formulaire d'inscription</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Les équipes
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Équipe féminine 1</a></li>
+                        <li><a class="dropdown-item" href="#">Équipe masculine 1</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={{ path('app_home') }}>Les équipes</a>
+                    <a class="nav-link active" aria-current="page" href={{ path('app_home') }}>Les partenaires</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Actualités
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Événements</a></li>
+                        <li><a class="dropdown-item" href="#">Planning des matchs compétition</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={{ path('app_home') }}>Infos pratiques</a>
+                    <a class="nav-link disabled" aria-current="page" href={{ path('app_home') }}>Galerie</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Les infos pratiques
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Les entraînements</a></li>
+                        <li><a class="dropdown-item" href="#">Les gymnases</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href={{ path('app_home') }}>Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-current="page" href={{ path('app_home') }}>Boutique</a>
                 </li>
             </ul>
+            <span class="navbar-text">
+                <a class="nav-link active" aria-current="page" href={{ path('app_home') }}>Connexion</a>
+            </span>
+
         </div>
     </div>
 </nav>
