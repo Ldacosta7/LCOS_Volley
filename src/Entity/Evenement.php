@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,19 +17,18 @@ class Evenement
     #[ORM\Column(length: 150)]
     private ?string $libelle = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateEvenement = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $heureEvenement = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: club::class)]
-    private Collection $idClub;
-
-    public function __construct()
-    {
-        $this->idClub = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'evenements')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?club $idClub = null;
 
     public function getId(): ?int
     {
@@ -62,6 +59,18 @@ class Evenement
         return $this;
     }
 
+    public function getHeureEvenement(): ?\DateTimeInterface
+    {
+        return $this->heureEvenement;
+    }
+
+    public function setHeureEvenement(?\DateTimeInterface $heureEvenement): static
+    {
+        $this->heureEvenement = $heureEvenement;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -74,32 +83,14 @@ class Evenement
         return $this;
     }
 
-    /**
-     * @return Collection<int, club>
-     */
-    public function getIdClub(): Collection
+    public function getIdClub(): ?club
     {
         return $this->idClub;
     }
 
-    public function addIdClub(club $idClub): static
+    public function setIdClub(?club $idClub): static
     {
-        if (!$this->idClub->contains($idClub)) {
-            $this->idClub->add($idClub);
-            $idClub->setEvenement($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdClub(club $idClub): static
-    {
-        if ($this->idClub->removeElement($idClub)) {
-            // set the owning side to null (unless already changed)
-            if ($idClub->getEvenement() === $this) {
-                $idClub->setEvenement(null);
-            }
-        }
+        $this->idClub = $idClub;
 
         return $this;
     }
