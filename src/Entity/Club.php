@@ -11,7 +11,7 @@ class Club
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $idClub = null;
+    private ?int $id = null;
 
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
@@ -19,24 +19,15 @@ class Club
     #[ORM\Column(length: 50)]
     private ?string $ville = null;
 
-    #[ORM\Column(length: 120)]
+    #[ORM\Column(length: 255)]
     private ?string $adresse = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idClub')]
+    private ?Evenement $evenement = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdClub(): ?int
-    {
-        return $this->idClub;
-    }
-
-    public function setIdClub(int $idClub): static
-    {
-        $this->idClub = $idClub;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -71,6 +62,18 @@ class Club
     public function setAdresse(string $adresse): static
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getEvenement(): ?Evenement
+    {
+        return $this->evenement;
+    }
+
+    public function setEvenement(?Evenement $evenement): static
+    {
+        $this->evenement = $evenement;
 
         return $this;
     }
