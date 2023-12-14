@@ -14,6 +14,9 @@ class Evenement
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'evenements')]
+    private ?Club $club = null;
+
     #[ORM\Column(length: 150)]
     private ?string $libelle = null;
 
@@ -26,13 +29,21 @@ class Evenement
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'evenements')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?club $idClub = null;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getClub(): ?Club
+    {
+        return $this->club;
+    }
+
+    public function setClub(?Club $club): static
+    {
+        $this->club = $club;
+
+        return $this;
     }
 
     public function getLibelle(): ?string
@@ -79,18 +90,6 @@ class Evenement
     public function setDescription(?string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getIdClub(): ?club
-    {
-        return $this->idClub;
-    }
-
-    public function setIdClub(?club $idClub): static
-    {
-        $this->idClub = $idClub;
 
         return $this;
     }
