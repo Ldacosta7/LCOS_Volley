@@ -21,7 +21,7 @@
     {% block javascripts %}
     {% endblock %}
 </head>
-<body>
+<body class="bg-body-tertiary">
 
 <div class="bg-body-tertiary container-fluid d-flex justify-content-center pb-3 pt-3">
     <img src="{{ asset('images/LSOC_Volley_title_small.png') }}" alt="Titre LSOC Volley">
@@ -93,6 +93,7 @@
                 </li>
             </ul>
             <span class="navbar-text">
+                {% if() %}
                 <a class="nav-link active border border-danger rounded p-1 bg-danger text-white" aria-current="page" href={{ path('app_home') }}>Connexion</a>
             </span>
 
@@ -100,7 +101,9 @@
     </div>
 </nav>
 
-{% block body %}{% endblock %}
+{% block body %}
+
+{% endblock %}
 
 <!-- Footer -->
 <footer class="bg-body-tertiary text-center border-3 border-top border-danger">
